@@ -1,5 +1,5 @@
 import React from 'react';
-import uuid from 'uuid/v4';
+import uuid from 'uuid';
 import {
   View,
   Text,
@@ -42,10 +42,10 @@ export default function DaysGridView(props) {
   const totalDays = Utils.getDaysInMonth(month, year);
   // Let's create a date for day one of the current given month and year
   const firstDayOfMonth = moment({ year, month, day: 1 });
-  // isoWeekday() gets the ISO day of the week with 1 being Monday and 7 being Sunday.
-  // We will need this to know what day of the week to show day 1
-  // See https://github.com/stephy/CalendarPicker/issues/49
-  const firstWeekDay = firstDayOfMonth.isoWeekday();
+  // The weekday() method returns the day of the week (from 0 to 6) for the specified date.
+  // Note: Sunday is 0, Monday is 1, and so on. We will need this to know what
+  // day of the week to show day 1
+  const firstWeekDay = firstDayOfMonth.weekday();
   // fill up an array of days with the amount of days in the current month
   const days = Array.apply(null, {length: totalDays}).map(Number.call, Number);
   const guideArray = [ 0, 1, 2, 3, 4, 5, 6 ];
